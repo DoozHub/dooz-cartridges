@@ -11,7 +11,7 @@
             "downloads": 1234,
             "icon": "🕐",
             "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/git-traveler/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/git-traveler/manifest.json"
         },
         {
             "id": "com.dooz.npm-doctor",
@@ -22,7 +22,7 @@
             "downloads": 892,
             "icon": "🩺",
             "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/npm-doctor/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/npm-doctor/manifest.json"
         },
         {
             "id": "com.dooz.docker-skipper",
@@ -33,7 +33,7 @@
             "downloads": 2156,
             "icon": "🐳",
             "category": "DevOps",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/docker-skipper/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/docker-skipper/manifest.json"
         },
         {
             "id": "com.dooz.video-wizard",
@@ -44,7 +44,7 @@
             "downloads": 567,
             "icon": "🎬",
             "category": "Media",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/video-wizard/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/video-wizard/manifest.json"
         },
         {
             "id": "com.dooz.weather-station",
@@ -55,7 +55,7 @@
             "downloads": 1890,
             "icon": "🌤️",
             "category": "Utilities",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/weather-station/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/weather-station/manifest.json"
         },
         {
             "id": "com.dooz.clipboard-manager",
@@ -66,7 +66,7 @@
             "downloads": 3420,
             "icon": "📋",
             "category": "Utilities",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/clipboard-manager/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/clipboard-manager/manifest.json"
         },
         {
             "id": "com.dooz.markdown-preview",
@@ -77,7 +77,7 @@
             "downloads": 2134,
             "icon": "📝",
             "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/markdown-preview/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/markdown-preview/manifest.json"
         },
         {
             "id": "com.dooz.code-analyzer-pro",
@@ -90,7 +90,7 @@
             "category": "Developer Tools",
             "isPaid": true,
             "price": 9.99,
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/code-analyzer-pro/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/code-analyzer-pro/manifest.json"
         },
         {
             "id": "com.dooz.db-manager-pro",
@@ -103,7 +103,7 @@
             "category": "Developer Tools",
             "isPaid": true,
             "price": 14.99,
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/db-manager-pro/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/db-manager-pro/manifest.json"
         },
         {
             "id": "com.dooz.backup-master",
@@ -116,7 +116,7 @@
             "category": "Utilities",
             "isPaid": true,
             "price": 4.99,
-            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/backup-master/manifest.json"
+            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/backup-master/manifest.json"
         }
     ]
 }

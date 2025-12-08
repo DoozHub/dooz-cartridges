@@ -1,0 +1,39 @@
+{
+    "id": "com.dooz.backup-master",
+    "name": "Backup Master",
+    "version": "1.0.0",
+    "description": "Automated backup solution with cloud sync and encryption.",
+    "binary": "rsync",
+    "category": "Utilities",
+    "author": "Dooz Team",
+    "icon": "☁️",
+    "gui": {
+        "inputs": [
+            {
+                "id": "source",
+                "type": "directory_picker",
+                "label": "Source Directory",
+                "required": true
+            },
+            {
+                "id": "destination",
+                "type": "directory_picker",
+                "label": "Backup Destination",
+                "required": true
+            },
+            {
+                "id": "compress",
+                "type": "checkbox",
+                "label": "Compress during transfer",
+                "default": true
+            },
+            {
+                "id": "dry_run",
+                "type": "checkbox",
+                "label": "Dry run (preview only)",
+                "default": true
+            }
+        ],
+        "template": "rsync -avh {{#compress}}-z{{/compress}} {{#dry_run}}--dry-run{{/dry_run}} \"{{source}}/\" \"{{destination}}/\""
+    }
+}

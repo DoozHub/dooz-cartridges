@@ -1,0 +1,45 @@
+{
+    "id": "com.dooz.weather-station",
+    "name": "Weather Station",
+    "version": "1.0.0",
+    "description": "Beautiful weather reports from wttr.in.",
+    "binary": "curl",
+    "category": "Utilities",
+    "author": "Dooz Team",
+    "icon": "🌤️",
+    "gui": {
+        "inputs": [
+            {
+                "id": "location",
+                "type": "text",
+                "label": "Location",
+                "default": "",
+                "args": {
+                    "placeholder": "City name or leave empty for auto-detect"
+                }
+            },
+            {
+                "id": "format",
+                "type": "select",
+                "label": "Format",
+                "options": [
+                    "full",
+                    "compact",
+                    "minimal"
+                ],
+                "default": "compact"
+            },
+            {
+                "id": "units",
+                "type": "select",
+                "label": "Units",
+                "options": [
+                    "metric",
+                    "imperial"
+                ],
+                "default": "metric"
+            }
+        ],
+        "template": "curl -s 'wttr.in/{{location}}?{{#units}}m{{/units}}{{#format}}0{{/format}}'"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "id": "com.dooz.git-traveler",
+    "name": "Git Time-Traveler",
+    "version": "1.0.0",
+    "description": "Visualize git history and checkout commits with natural language.",
+    "binary": "git",
+    "category": "Developer Tools",
+    "author": "Dooz Team",
+    "icon": "🕐",
+    "gui": {
+        "inputs": [
+            {
+                "id": "repo_path",
+                "type": "directory_picker",
+                "label": "Git Repository",
+                "required": true
+            },
+            {
+                "id": "count",
+                "type": "number",
+                "label": "Number of Commits",
+                "default": 10,
+                "args": {
+                    "min": 5,
+                    "max": 100
+                }
+            },
+            {
+                "id": "format",
+                "type": "select",
+                "label": "Output Format",
+                "options": [
+                    "oneline",
+                    "short",
+                    "medium",
+                    "full"
+                ],
+                "default": "oneline"
+            }
+        ],
+        "template": "cd \"{{repo_path}}\" && git log --{{format}} -n {{count}}"
+    }
+}

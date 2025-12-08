@@ -1,0 +1,26 @@
+{
+    "id": "com.dooz.clipboard-manager",
+    "name": "Clipboard Manager",
+    "version": "1.0.0",
+    "description": "Advanced clipboard history with search and favorites.",
+    "binary": "pbpaste",
+    "category": "Utilities",
+    "author": "Dooz Team",
+    "icon": "📋",
+    "gui": {
+        "inputs": [
+            {
+                "id": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                    "show",
+                    "clear",
+                    "count"
+                ],
+                "default": "show"
+            }
+        ],
+        "template": "pbpaste | head -100"
+    }
+}

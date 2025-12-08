@@ -1,0 +1,39 @@
+{
+    "id": "com.dooz.code-analyzer-pro",
+    "name": "Code Analyzer Pro",
+    "version": "2.0.0",
+    "description": "Advanced code analysis with AI-powered suggestions and security scanning.",
+    "binary": "grep",
+    "category": "Developer Tools",
+    "author": "Dooz Team",
+    "icon": "🔍",
+    "gui": {
+        "inputs": [
+            {
+                "id": "directory",
+                "type": "directory_picker",
+                "label": "Project Directory",
+                "required": true
+            },
+            {
+                "id": "pattern",
+                "type": "text",
+                "label": "Search Pattern",
+                "default": "TODO|FIXME|HACK",
+                "args": {
+                    "placeholder": "Regex pattern to search for"
+                }
+            },
+            {
+                "id": "extensions",
+                "type": "text",
+                "label": "File Extensions",
+                "default": "js,ts,py,rs",
+                "args": {
+                    "placeholder": "Comma-separated extensions"
+                }
+            }
+        ],
+        "template": "grep -rn --include='*.{js,ts,py,rs}' -E '{{pattern}}' \"{{directory}}\" | head -50"
+    }
+}

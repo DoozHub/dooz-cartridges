@@ -1,0 +1,41 @@
+{
+    "id": "com.dooz.docker-skipper",
+    "name": "Docker Skipper",
+    "version": "1.0.0",
+    "description": "Manage containers and view logs with simple commands.",
+    "binary": "docker",
+    "category": "DevOps",
+    "author": "Dooz Team",
+    "icon": "🐳",
+    "gui": {
+        "inputs": [
+            {
+                "id": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                    "ps",
+                    "logs",
+                    "images",
+                    "stats"
+                ],
+                "default": "ps"
+            },
+            {
+                "id": "container",
+                "type": "text",
+                "label": "Container Name/ID (for logs)",
+                "args": {
+                    "placeholder": "Leave empty for action that don't need it"
+                }
+            },
+            {
+                "id": "all",
+                "type": "checkbox",
+                "label": "Show all (including stopped)",
+                "default": false
+            }
+        ],
+        "template": "docker {{action}} {{#all}}-a{{/all}} {{container}}"
+    }
+}

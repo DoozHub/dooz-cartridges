@@ -1,0 +1,34 @@
+{
+    "id": "com.dooz.markdown-preview",
+    "name": "Markdown Preview",
+    "version": "1.0.0",
+    "description": "Live preview markdown files with syntax highlighting.",
+    "binary": "cat",
+    "category": "Developer Tools",
+    "author": "Dooz Team",
+    "icon": "📝",
+    "gui": {
+        "inputs": [
+            {
+                "id": "file",
+                "type": "file_picker",
+                "label": "Markdown File",
+                "required": true,
+                "args": {
+                    "extensions": [
+                        "md",
+                        "markdown",
+                        "txt"
+                    ]
+                }
+            },
+            {
+                "id": "line_numbers",
+                "type": "checkbox",
+                "label": "Show line numbers",
+                "default": false
+            }
+        ],
+        "template": "cat \"{{file}}\""
+    }
+}

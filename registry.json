@@ -1,0 +1,122 @@
+{
+    "version": "1.0.0",
+    "last_updated": "2024-12-08",
+    "cartridges": [
+        {
+            "id": "com.dooz.git-traveler",
+            "name": "Git Time-Traveler",
+            "version": "1.0.0",
+            "description": "Visualize git history and checkout commits with natural language.",
+            "author": "Dooz Team",
+            "downloads": 1234,
+            "icon": "🕐",
+            "category": "Developer Tools",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/git-traveler/manifest.json"
+        },
+        {
+            "id": "com.dooz.npm-doctor",
+            "name": "NPM Doctor",
+            "version": "1.0.0",
+            "description": "Summarize npm audit vulnerabilities in plain English.",
+            "author": "Dooz Team",
+            "downloads": 892,
+            "icon": "🩺",
+            "category": "Developer Tools",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/npm-doctor/manifest.json"
+        },
+        {
+            "id": "com.dooz.docker-skipper",
+            "name": "Docker Skipper",
+            "version": "1.0.0",
+            "description": "Manage containers and view logs with simple commands.",
+            "author": "Dooz Team",
+            "downloads": 2156,
+            "icon": "🐳",
+            "category": "DevOps",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/docker-skipper/manifest.json"
+        },
+        {
+            "id": "com.dooz.video-wizard",
+            "name": "Video Wizard",
+            "version": "1.0.0",
+            "description": "Convert videos with ffmpeg using drag-and-drop.",
+            "author": "Dooz Team",
+            "downloads": 567,
+            "icon": "🎬",
+            "category": "Media",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/video-wizard/manifest.json"
+        },
+        {
+            "id": "com.dooz.weather-station",
+            "name": "Weather Station",
+            "version": "1.0.0",
+            "description": "Beautiful weather reports from wttr.in.",
+            "author": "Dooz Team",
+            "downloads": 1890,
+            "icon": "🌤️",
+            "category": "Utilities",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/weather-station/manifest.json"
+        },
+        {
+            "id": "com.dooz.clipboard-manager",
+            "name": "Clipboard Manager",
+            "version": "1.0.0",
+            "description": "Advanced clipboard history with search and favorites.",
+            "author": "Dooz Team",
+            "downloads": 3420,
+            "icon": "📋",
+            "category": "Utilities",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/clipboard-manager/manifest.json"
+        },
+        {
+            "id": "com.dooz.markdown-preview",
+            "name": "Markdown Preview",
+            "version": "1.0.0",
+            "description": "Live preview markdown files with syntax highlighting.",
+            "author": "Dooz Team",
+            "downloads": 2134,
+            "icon": "📝",
+            "category": "Developer Tools",
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/markdown-preview/manifest.json"
+        },
+        {
+            "id": "com.dooz.code-analyzer-pro",
+            "name": "Code Analyzer Pro",
+            "version": "2.0.0",
+            "description": "Advanced code analysis with AI-powered suggestions and security scanning.",
+            "author": "Dooz Team",
+            "downloads": 5678,
+            "icon": "🔍",
+            "category": "Developer Tools",
+            "isPaid": true,
+            "price": 9.99,
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/code-analyzer-pro/manifest.json"
+        },
+        {
+            "id": "com.dooz.db-manager-pro",
+            "name": "Database Manager Pro",
+            "version": "1.5.0",
+            "description": "Visual database manager with query builder, migrations, and backups.",
+            "author": "Dooz Team",
+            "downloads": 4521,
+            "icon": "🗄️",
+            "category": "Developer Tools",
+            "isPaid": true,
+            "price": 14.99,
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/db-manager-pro/manifest.json"
+        },
+        {
+            "id": "com.dooz.backup-master",
+            "name": "Backup Master",
+            "version": "1.0.0",
+            "description": "Automated backup solution with cloud sync and encryption.",
+            "author": "Dooz Team",
+            "downloads": 2890,
+            "icon": "☁️",
+            "category": "Utilities",
+            "isPaid": true,
+            "price": 4.99,
+            "manifest_url": "https://raw.githubusercontent.com/dooziesoft/dooz-cartridges/main/cartridges/backup-master/manifest.json"
+        }
+    ]
+}

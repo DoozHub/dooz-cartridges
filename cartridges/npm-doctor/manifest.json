@@ -1,0 +1,27 @@
+{
+    "id": "com.dooz.npm-doctor",
+    "name": "NPM Doctor",
+    "version": "1.0.0",
+    "description": "Summarize npm audit vulnerabilities in plain English.",
+    "binary": "npm",
+    "category": "Developer Tools",
+    "author": "Dooz Team",
+    "icon": "🩺",
+    "gui": {
+        "inputs": [
+            {
+                "id": "project_path",
+                "type": "directory_picker",
+                "label": "NPM Project Directory",
+                "required": true
+            },
+            {
+                "id": "fix",
+                "type": "checkbox",
+                "label": "Auto-fix vulnerabilities",
+                "default": false
+            }
+        ],
+        "template": "cd \"{{project_path}}\" && npm audit {{#fix}}--fix{{/fix}}"
+    }
+}

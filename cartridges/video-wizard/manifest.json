@@ -1,0 +1,53 @@
+{
+    "id": "com.dooz.video-wizard",
+    "name": "Video Wizard",
+    "version": "1.0.0",
+    "description": "Convert videos with ffmpeg using drag-and-drop.",
+    "binary": "ffmpeg",
+    "category": "Media",
+    "author": "Dooz Team",
+    "icon": "🎬",
+    "gui": {
+        "inputs": [
+            {
+                "id": "input_file",
+                "type": "file_picker",
+                "label": "Input Video",
+                "required": true,
+                "args": {
+                    "extensions": [
+                        "mp4",
+                        "avi",
+                        "mkv",
+                        "mov",
+                        "webm"
+                    ]
+                }
+            },
+            {
+                "id": "output_format",
+                "type": "select",
+                "label": "Output Format",
+                "options": [
+                    "mp4",
+                    "webm",
+                    "avi",
+                    "gif"
+                ],
+                "default": "mp4"
+            },
+            {
+                "id": "quality",
+                "type": "select",
+                "label": "Quality",
+                "options": [
+                    "high",
+                    "medium",
+                    "low"
+                ],
+                "default": "medium"
+            }
+        ],
+        "template": "ffmpeg -i \"{{input_file}}\" -crf {{#quality}}23{{/quality}} \"output.{{output_format}}\""
+    }
+}

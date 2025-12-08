@@ -1,0 +1,37 @@
+{
+    "id": "com.dooz.db-manager-pro",
+    "name": "Database Manager Pro",
+    "version": "1.5.0",
+    "description": "Visual database manager with query builder, migrations, and backups.",
+    "binary": "sqlite3",
+    "category": "Developer Tools",
+    "author": "Dooz Team",
+    "icon": "🗄️",
+    "gui": {
+        "inputs": [
+            {
+                "id": "database",
+                "type": "file_picker",
+                "label": "Database File",
+                "required": true,
+                "args": {
+                    "extensions": [
+                        "db",
+                        "sqlite",
+                        "sqlite3"
+                    ]
+                }
+            },
+            {
+                "id": "query",
+                "type": "textarea",
+                "label": "SQL Query",
+                "default": "SELECT name FROM sqlite_master WHERE type='table';",
+                "args": {
+                    "placeholder": "Enter SQL query"
+                }
+            }
+        ],
+        "template": "sqlite3 -header -column \"{{database}}\" \"{{query}}\""
+    }
+}

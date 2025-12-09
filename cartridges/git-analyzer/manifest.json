@@ -1,0 +1,206 @@
+{
+    "id": "com.dooz.git-analyzer",
+    "name": "Git Analyzer",
+    "version": "2.0.0",
+    "description": "AI-powered Git repository analysis - explore commit history, find contributors, analyze file changes, and understand code evolution",
+    "type": "tool",
+    "icon": "📊",
+    "category": "Development",
+    "author": "Dooz Team",
+    "uses_ai": true,
+    "requires_provider": "com.dooz.provider.gemini",
+    "binaries": [
+        "git"
+    ],
+    "gui": {
+        "inputs": [
+            {
+                "id": "repo_path",
+                "label": "Repository Path",
+                "description": "Path to the git repository (leave empty for current directory)",
+                "type": "path_select",
+                "args": {
+                    "directory": true,
+                    "placeholder": "/path/to/repository"
+                }
+            },
+            {
+                "id": "file_path",
+                "label": "File to Analyze (optional)",
+                "description": "Specific file to focus on",
+                "type": "text",
+                "args": {
+                    "placeholder": "src/main.rs"
+                }
+            },
+            {
+                "id": "author",
+                "label": "Filter by Author (optional)",
+                "description": "Filter commits by author name or email",
+                "type": "text",
+                "args": {
+                    "placeholder": "john@example.com"
+                }
+            },
+            {
+                "id": "since",
+                "label": "Since Date (optional)",
+                "description": "Only show commits after this date",
+                "type": "text",
+                "args": {
+                    "placeholder": "2024-01-01"
+                }
+            },
+            {
+                "id": "intent",
+                "label": "What would you like to analyze?",
+                "description": "Describe what you want to learn about this repository",
+                "type": "textarea",
+                "args": {
+                    "placeholder": "Show me who contributed the most code this month, find the most frequently changed files, and summarize recent activity"
+                }
+            }
+        ],
+        "ai_planner": {
+            "enabled": true,
+            "system_prompt": "You are a Git expert. Given a user's analysis request for a Git repository, generate a workflow plan using git commands to gather the requested information. Use git log, git shortlog, git diff, git blame, and git show appropriately. Structure your workflow to build a comprehensive picture of the repository. Include relevant formatting flags like --oneline, --stat, --graph where helpful. If a file path is provided, focus commands on that specific file. Respond with a valid JSON workflow plan.",
+            "input_field": "intent",
+            "fallback_workflow": "quick_overview",
+            "model": "gemini-1.5-flash"
+        },
+        "workflows": {
+            "quick_overview": {
+                "id": "quick_overview",
+                "name": "Quick Repository Overview",
+                "description": "Get a quick snapshot of the repository",
+                "steps": [
+                    {
+                        "id": "repo_info",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} rev-parse --show-toplevel",
+                        "description": "Verify repository location"
+                    },
+                    {
+                        "id": "recent_commits",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --oneline -10",
+                        "description": "Show last 10 commits"
+                    },
+                    {
+                        "id": "branch_info",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} branch -a --list",
+                        "description": "List all branches"
+                    },
+                    {
+                        "id": "contributors",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} shortlog -sn --no-merges -10",
+                        "description": "Top 10 contributors by commit count"
+                    }
+                ]
+            },
+            "activity_report": {
+                "id": "activity_report",
+                "name": "Activity Report",
+                "description": "Detailed activity analysis",
+                "steps": [
+                    {
+                        "id": "commit_count",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} rev-list --count HEAD",
+                        "description": "Total commit count"
+                    },
+                    {
+                        "id": "recent_activity",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --oneline --since='1 week ago' --stat",
+                        "description": "Activity in the last week"
+                    },
+                    {
+                        "id": "active_contributors",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} shortlog -sn --since='1 month ago' --no-merges",
+                        "description": "Active contributors this month"
+                    },
+                    {
+                        "id": "file_changes",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --pretty=format:'' --name-only --since='1 week ago' | sort | uniq -c | sort -rn | head -10",
+                        "description": "Most frequently changed files this week"
+                    },
+                    {
+                        "id": "commit_timeline",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --format='%ad' --date=short --since='1 month ago' | sort | uniq -c",
+                        "description": "Commit frequency by day"
+                    }
+                ]
+            },
+            "file_history": {
+                "id": "file_history",
+                "name": "File History Analysis",
+                "description": "Deep dive into a specific file's history",
+                "steps": [
+                    {
+                        "id": "file_log",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --oneline -20 -- {{file_path}}",
+                        "description": "Recent commits touching this file"
+                    },
+                    {
+                        "id": "file_blame",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} blame --line-porcelain {{file_path}} | grep '^author ' | sort | uniq -c | sort -rn",
+                        "description": "Who wrote each part of the file"
+                    },
+                    {
+                        "id": "first_commit",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --follow --diff-filter=A --format='%H %s' -- {{file_path}}",
+                        "description": "When and why the file was created"
+                    },
+                    {
+                        "id": "recent_diff",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} diff HEAD~5..HEAD -- {{file_path}}",
+                        "description": "Recent changes to this file"
+                    }
+                ]
+            },
+            "author_analysis": {
+                "id": "author_analysis",
+                "name": "Author Analysis",
+                "description": "Analyze contributions by a specific author",
+                "steps": [
+                    {
+                        "id": "author_commits",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --author='{{author}}' --oneline -20",
+                        "description": "Recent commits by this author"
+                    },
+                    {
+                        "id": "author_stats",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --author='{{author}}' --shortstat --oneline | grep -E 'files? changed' | awk '{files+=$1; inserted+=$4; deleted+=$6} END {print \"Files changed:\", files, \"Insertions:\", inserted, \"Deletions:\", deleted}'",
+                        "description": "Summary of author's changes"
+                    },
+                    {
+                        "id": "author_files",
+                        "tool": "git",
+                        "args_template": "-C {{repo_path}} log --author='{{author}}' --pretty=format:'' --name-only | sort | uniq -c | sort -rn | head -10",
+                        "description": "Files this author works on most"
+                    }
+                ]
+            }
+        },
+        "available_tools": [
+            {
+                "name": "git",
+                "description": "Git version control commands for repository analysis",
+                "example": "git log --oneline -10 --author='john' --since='2024-01-01'"
+            }
+        ],
+        "output_parser": "workflow"
+    }
+}

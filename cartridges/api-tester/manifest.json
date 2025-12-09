@@ -1,0 +1,203 @@
+{
+    "id": "com.dooz.api-tester",
+    "name": "API Tester",
+    "version": "2.0.0",
+    "description": "AI-powered API endpoint testing with comprehensive diagnostics - test endpoints, validate responses, check headers, measure performance, and analyze JSON",
+    "type": "tool",
+    "icon": "🔗",
+    "category": "Development",
+    "author": "Dooz Team",
+    "uses_ai": true,
+    "requires_provider": "com.dooz.provider.gemini",
+    "binaries": [
+        "curl",
+        "jq"
+    ],
+    "gui": {
+        "inputs": [
+            {
+                "id": "endpoint",
+                "label": "API Endpoint",
+                "description": "The URL to test (e.g., https://api.example.com/users)",
+                "type": "text",
+                "args": {
+                    "placeholder": "https://api.example.com/v1/resource"
+                },
+                "required": true
+            },
+            {
+                "id": "method",
+                "label": "HTTP Method",
+                "type": "select",
+                "args": {
+                    "options": [
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS"
+                    ]
+                },
+                "default": "GET"
+            },
+            {
+                "id": "headers",
+                "label": "Custom Headers",
+                "description": "Key: Value pairs, one per line",
+                "type": "textarea",
+                "args": {
+                    "placeholder": "Content-Type: application/json\nAuthorization: Bearer token123"
+                }
+            },
+            {
+                "id": "body",
+                "label": "Request Body",
+                "description": "JSON body for POST/PUT/PATCH requests",
+                "type": "textarea",
+                "args": {
+                    "placeholder": "{\n  \"key\": \"value\"\n}"
+                }
+            },
+            {
+                "id": "intent",
+                "label": "What would you like to test?",
+                "description": "Describe your testing goals in natural language",
+                "type": "textarea",
+                "args": {
+                    "placeholder": "Test if the endpoint returns valid JSON with status 200, check response time, and validate the response has a 'data' field"
+                }
+            }
+        ],
+        "ai_planner": {
+            "enabled": true,
+            "system_prompt": "You are an API testing expert. Given a user's testing goal and an API endpoint, generate a workflow plan to test the API comprehensively. Use curl for requests and jq for JSON parsing. Always structure your tests logically: first check connectivity, then test the main request, then validate the response. Include timing information and header analysis when relevant. Respond with a valid JSON workflow plan.",
+            "input_field": "intent",
+            "fallback_workflow": "basic_test",
+            "model": "gemini-1.5-flash"
+        },
+        "workflows": {
+            "basic_test": {
+                "id": "basic_test",
+                "name": "Basic API Test",
+                "description": "Simple endpoint test with response validation",
+                "steps": [
+                    {
+                        "id": "check_connectivity",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{http_code}' --connect-timeout 5 '{{endpoint}}'",
+                        "description": "Check if the endpoint is reachable"
+                    },
+                    {
+                        "id": "make_request",
+                        "tool": "curl",
+                        "args_template": "-s -X {{method}} -w '\\n---TIMING---\\nTime: %{time_total}s\\nSize: %{size_download} bytes' '{{endpoint}}'",
+                        "description": "Make the API request and capture timing"
+                    },
+                    {
+                        "id": "validate_json",
+                        "tool": "curl",
+                        "args_template": "-s '{{endpoint}}' | jq '.'",
+                        "description": "Validate response is valid JSON",
+                        "condition": "{{prev.success}}"
+                    }
+                ]
+            },
+            "full_analysis": {
+                "id": "full_analysis",
+                "name": "Full API Analysis",
+                "description": "Comprehensive API testing with headers, timing, and response structure",
+                "steps": [
+                    {
+                        "id": "dns_lookup",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w 'DNS: %{time_namelookup}s\\nConnect: %{time_connect}s\\nTLS: %{time_appconnect}s' '{{endpoint}}'",
+                        "description": "Analyze connection timing breakdown"
+                    },
+                    {
+                        "id": "get_headers",
+                        "tool": "curl",
+                        "args_template": "-s -I -X {{method}} '{{endpoint}}'",
+                        "description": "Fetch response headers"
+                    },
+                    {
+                        "id": "make_request",
+                        "tool": "curl",
+                        "args_template": "-s -X {{method}} -w '\\n---METRICS---\\nTotal Time: %{time_total}s\\nDownload Size: %{size_download} bytes\\nHTTP Code: %{http_code}' '{{endpoint}}'",
+                        "description": "Make the full API request with metrics"
+                    },
+                    {
+                        "id": "parse_response",
+                        "tool": "curl",
+                        "args_template": "-s '{{endpoint}}' | jq 'keys' 2>/dev/null || echo 'Not valid JSON'",
+                        "description": "Extract top-level JSON keys",
+                        "condition": "{{prev.success}}"
+                    },
+                    {
+                        "id": "count_items",
+                        "tool": "curl",
+                        "args_template": "-s '{{endpoint}}' | jq 'if type == \"array\" then length else \"Not an array\" end' 2>/dev/null || echo 'N/A'",
+                        "description": "Count array items if applicable"
+                    }
+                ]
+            },
+            "load_test": {
+                "id": "load_test",
+                "name": "Basic Load Test",
+                "description": "Make multiple requests to measure performance consistency",
+                "steps": [
+                    {
+                        "id": "warmup",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null '{{endpoint}}'",
+                        "description": "Warmup request"
+                    },
+                    {
+                        "id": "request_1",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{time_total}' '{{endpoint}}'",
+                        "description": "Request 1 timing"
+                    },
+                    {
+                        "id": "request_2",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{time_total}' '{{endpoint}}'",
+                        "description": "Request 2 timing"
+                    },
+                    {
+                        "id": "request_3",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{time_total}' '{{endpoint}}'",
+                        "description": "Request 3 timing"
+                    },
+                    {
+                        "id": "request_4",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{time_total}' '{{endpoint}}'",
+                        "description": "Request 4 timing"
+                    },
+                    {
+                        "id": "request_5",
+                        "tool": "curl",
+                        "args_template": "-s -o /dev/null -w '%{time_total}' '{{endpoint}}'",
+                        "description": "Request 5 timing"
+                    }
+                ]
+            }
+        },
+        "available_tools": [
+            {
+                "name": "curl",
+                "description": "Make HTTP requests with detailed timing and header information",
+                "example": "curl -s -X GET -w 'Time: %{time_total}s' 'https://api.example.com'"
+            },
+            {
+                "name": "jq",
+                "description": "Parse, filter, and transform JSON responses",
+                "example": "curl -s 'url' | jq '.data[] | select(.active == true)'"
+            }
+        ],
+        "output_parser": "workflow"
+    }
+}

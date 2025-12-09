@@ -1,0 +1,140 @@
+{
+    "id": "com.dooz.network-doctor",
+    "name": "Network Doctor",
+    "version": "2.0.0",
+    "description": "AI-powered network diagnostics using ping, dig, traceroute, and curl. Analyze connectivity issues with intelligent workflow orchestration.",
+    "category": "Network",
+    "author": "Dooz Team",
+    "icon": "🩺",
+    "featured": true,
+    "uses_ai": true,
+    "mode": "online",
+    "requires_provider": "com.dooz.provider.gemini",
+    "binaries": [
+        "ping",
+        "dig",
+        "curl",
+        "traceroute"
+    ],
+    "gui": {
+        "inputs": [
+            {
+                "id": "target",
+                "type": "text",
+                "label": "Target Host or IP",
+                "required": true,
+                "default": "google.com",
+                "args": {
+                    "placeholder": "e.g., example.com, 192.168.1.1, 8.8.8.8"
+                }
+            },
+            {
+                "id": "intent",
+                "type": "textarea",
+                "label": "What would you like to diagnose?",
+                "args": {
+                    "placeholder": "Describe your network issue or goal in plain English...\n\nExamples:\n• Check if this website is accessible and responding\n• Diagnose why I can't reach this server\n• Test the full network path to this host\n• Verify DNS resolution and connectivity"
+                }
+            }
+        ],
+        "ai_planner": {
+            "enabled": true,
+            "input_field": "intent",
+            "system_prompt": "You are a network diagnostics expert. Based on the user's intent and target host, create an optimal diagnostic workflow.\n\nAvailable tools:\n- ping: Test basic connectivity (args: -c <count> <host>)\n- dig: DNS lookup (args: +short <host> or @<dns-server> <host>)\n- curl: HTTP/HTTPS requests (args: -I -s <url> for headers, -w '%{time_total}' for timing)\n- traceroute: Network path analysis (args: <host>)\n\nReturn a JSON workflow with steps that build on each other. Capture relevant data to pass between steps.\n\nExample response format:\n{\n  \"workflow\": {\n    \"id\": \"connectivity_check\",\n    \"name\": \"Connectivity Check\",\n    \"steps\": [...]\n  },\n  \"explanation\": \"Why this workflow...\"\n}",
+            "fallback_workflow": "basic_connectivity",
+            "max_steps": 6
+        },
+        "workflows": {
+            "basic_connectivity": {
+                "id": "basic_connectivity",
+                "name": "Basic Connectivity Check",
+                "description": "Quick connectivity test using ping and DNS lookup",
+                "steps": [
+                    {
+                        "id": "dns_resolve",
+                        "tool": "dig",
+                        "args_template": "+short {{target}}",
+                        "description": "Resolve DNS to verify the hostname exists",
+                        "capture": {
+                            "output_var": "resolved_ip"
+                        }
+                    },
+                    {
+                        "id": "ping_test",
+                        "tool": "ping",
+                        "args_template": "-c 4 {{target}}",
+                        "description": "Test basic network connectivity with 4 pings",
+                        "timeout_seconds": 30
+                    },
+                    {
+                        "id": "http_check",
+                        "tool": "curl",
+                        "args_template": "-I -s -o /dev/null -w '%{http_code} %{time_total}s' https://{{target}}",
+                        "description": "Check HTTP response status and timing",
+                        "condition": "{{prev.success}}"
+                    }
+                ]
+            },
+            "full_path_analysis": {
+                "id": "full_path_analysis",
+                "name": "Full Network Path Analysis",
+                "description": "Comprehensive network path and connectivity analysis",
+                "steps": [
+                    {
+                        "id": "dns_resolve",
+                        "tool": "dig",
+                        "args_template": "+short {{target}}",
+                        "description": "Resolve DNS for the target host",
+                        "capture": {
+                            "output_var": "resolved_ip"
+                        }
+                    },
+                    {
+                        "id": "traceroute",
+                        "tool": "traceroute",
+                        "args_template": "-m 15 {{target}}",
+                        "description": "Trace the network path to the target (max 15 hops)",
+                        "timeout_seconds": 60
+                    },
+                    {
+                        "id": "ping_test",
+                        "tool": "ping",
+                        "args_template": "-c 10 {{target}}",
+                        "description": "Extended ping test for latency statistics",
+                        "timeout_seconds": 30
+                    },
+                    {
+                        "id": "http_headers",
+                        "tool": "curl",
+                        "args_template": "-I -s https://{{target}}",
+                        "description": "Fetch HTTP headers to verify web server response",
+                        "condition": "{{prev.success}}"
+                    }
+                ]
+            }
+        },
+        "available_tools": [
+            {
+                "name": "ping",
+                "description": "Send ICMP echo requests to test basic network connectivity",
+                "example": "ping -c 4 google.com"
+            },
+            {
+                "name": "dig",
+                "description": "DNS lookup utility to query name servers",
+                "example": "dig +short example.com"
+            },
+            {
+                "name": "curl",
+                "description": "Transfer data from or to a server, supports HTTP/HTTPS",
+                "example": "curl -I -s https://example.com"
+            },
+            {
+                "name": "traceroute",
+                "description": "Print the route packets take to network host",
+                "example": "traceroute google.com"
+            }
+        ],
+        "output_parser": "workflow"
+    }
+}

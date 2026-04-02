@@ -1,6 +1,6 @@
 {
-    "version": "1.0.0",
-    "last_updated": "2024-12-08",
+    "version": "2.0.0",
+    "last_updated": "2026-04-02",
     "cartridges": [
         {
             "id": "com.dooz.git-traveler",
@@ -10,8 +10,7 @@
             "author": "Dooz Team",
             "downloads": 1234,
             "icon": "🕐",
-            "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/git-traveler/manifest.json"
+            "category": "Developer Tools"
         },
         {
             "id": "com.dooz.npm-doctor",
@@ -21,8 +20,7 @@
             "author": "Dooz Team",
             "downloads": 892,
             "icon": "🩺",
-            "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/npm-doctor/manifest.json"
+            "category": "Developer Tools"
         },
         {
             "id": "com.dooz.docker-skipper",
@@ -32,8 +30,7 @@
             "author": "Dooz Team",
             "downloads": 2156,
             "icon": "🐳",
-            "category": "DevOps",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/docker-skipper/manifest.json"
+            "category": "DevOps"
         },
         {
             "id": "com.dooz.video-wizard",
@@ -43,8 +40,7 @@
             "author": "Dooz Team",
             "downloads": 567,
             "icon": "🎬",
-            "category": "Media",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/video-wizard/manifest.json"
+            "category": "Media"
         },
         {
             "id": "com.dooz.weather-station",
@@ -54,8 +50,7 @@
             "author": "Dooz Team",
             "downloads": 1890,
             "icon": "🌤️",
-            "category": "Utilities",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/weather-station/manifest.json"
+            "category": "Utilities"
         },
         {
             "id": "com.dooz.clipboard-manager",
@@ -65,8 +60,7 @@
             "author": "Dooz Team",
             "downloads": 3420,
             "icon": "📋",
-            "category": "Utilities",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/clipboard-manager/manifest.json"
+            "category": "Utilities"
         },
         {
             "id": "com.dooz.markdown-preview",
@@ -76,34 +70,27 @@
             "author": "Dooz Team",
             "downloads": 2134,
             "icon": "📝",
-            "category": "Developer Tools",
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/markdown-preview/manifest.json"
+            "category": "Developer Tools"
         },
         {
-            "id": "com.dooz.code-analyzer-pro",
-            "name": "Code Analyzer Pro",
-            "version": "2.0.0",
-            "description": "Advanced code analysis with AI-powered suggestions and security scanning.",
+            "id": "com.dooz.code-analyzer",
+            "name": "Code Analyzer",
+            "version": "1.0.0",
+            "description": "Static analysis and code quality reports.",
             "author": "Dooz Team",
-            "downloads": 5678,
+            "downloads": 1500,
             "icon": "🔍",
-            "category": "Developer Tools",
-            "isPaid": true,
-            "price": 9.99,
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/code-analyzer-pro/manifest.json"
+            "category": "Developer Tools"
         },
         {
-            "id": "com.dooz.db-manager-pro",
-            "name": "Database Manager Pro",
-            "version": "1.5.0",
-            "description": "Visual database manager with query builder, migrations, and backups.",
+            "id": "com.dooz.db-manager",
+            "name": "Database Manager",
+            "version": "1.0.0",
+            "description": "Query and manage databases.",
             "author": "Dooz Team",
-            "downloads": 4521,
+            "downloads": 1200,
             "icon": "🗄️",
-            "category": "Developer Tools",
-            "isPaid": true,
-            "price": 14.99,
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/db-manager-pro/manifest.json"
+            "category": "Developer Tools"
         },
         {
             "id": "com.dooz.backup-master",
@@ -113,10 +100,207 @@
             "author": "Dooz Team",
             "downloads": 2890,
             "icon": "☁️",
-            "category": "Utilities",
-            "isPaid": true,
-            "price": 4.99,
-            "manifest_url": "https://raw.githubusercontent.com/DoozieSoftware/dooz-cartridges/main/cartridges/backup-master/manifest.json"
+            "category": "Utilities"
+        },
+        {
+            "id": "com.dooz.aider",
+            "name": "Aider",
+            "version": "1.0.0",
+            "description": "AI pair programming with any LLM.",
+            "author": "Dooz Team",
+            "downloads": 8500,
+            "icon": "🤖",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.claude-code",
+            "name": "Claude Code",
+            "version": "1.0.0",
+            "description": "Anthropic Claude Code CLI.",
+            "author": "Dooz Team",
+            "downloads": 7200,
+            "icon": "🧠",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.copilot-cli",
+            "name": "Copilot CLI",
+            "version": "1.0.0",
+            "description": "GitHub Copilot CLI integration.",
+            "author": "Dooz Team",
+            "downloads": 6800,
+            "icon": "💻",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.ollama",
+            "name": "Ollama",
+            "version": "1.0.0",
+            "description": "Local LLM inference via Ollama.",
+            "author": "Dooz Team",
+            "downloads": 5400,
+            "icon": "🦙",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.cursor",
+            "name": "Cursor",
+            "version": "1.0.0",
+            "description": "Cursor IDE CLI integration.",
+            "author": "Dooz Team",
+            "downloads": 4100,
+            "icon": "🎯",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.windsurf",
+            "name": "Windsurf",
+            "version": "1.0.0",
+            "description": "Codeium Windsurf integration.",
+            "author": "Dooz Team",
+            "downloads": 3200,
+            "icon": "🌊",
+            "category": "AI Coding"
+        },
+        {
+            "id": "com.dooz.pr-review",
+            "name": "PR Review",
+            "version": "1.0.0",
+            "description": "Automated PR review pipeline.",
+            "author": "Dooz Team",
+            "downloads": 4500,
+            "icon": "🔎",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.test-gen",
+            "name": "Test Gen",
+            "version": "1.0.0",
+            "description": "AI test generation.",
+            "author": "Dooz Team",
+            "downloads": 3800,
+            "icon": "🧪",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.refactor",
+            "name": "Refactor",
+            "version": "1.0.0",
+            "description": "AI-assisted refactoring.",
+            "author": "Dooz Team",
+            "downloads": 2900,
+            "icon": "🔧",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.debug",
+            "name": "Debug",
+            "version": "1.0.0",
+            "description": "Interactive debugging session.",
+            "author": "Dooz Team",
+            "downloads": 3100,
+            "icon": "🐛",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.docs",
+            "name": "Docs",
+            "version": "1.0.0",
+            "description": "Documentation generation.",
+            "author": "Dooz Team",
+            "downloads": 2400,
+            "icon": "📖",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.security-audit",
+            "name": "Security Audit",
+            "version": "1.0.0",
+            "description": "Security vulnerability scanning.",
+            "author": "Dooz Team",
+            "downloads": 2700,
+            "icon": "🛡️",
+            "category": "Workflow"
+        },
+        {
+            "id": "com.dooz.github",
+            "name": "GitHub",
+            "version": "1.0.0",
+            "description": "GitHub API (PRs, issues, actions).",
+            "author": "Dooz Team",
+            "downloads": 5600,
+            "icon": "🐙",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.gitlab",
+            "name": "GitLab",
+            "version": "0.1.0",
+            "description": "GitLab API integration.",
+            "author": "Dooz Team",
+            "downloads": 1800,
+            "icon": "🦊",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.jira",
+            "name": "Jira",
+            "version": "0.1.0",
+            "description": "Jira issue tracking integration.",
+            "author": "Dooz Team",
+            "downloads": 2200,
+            "icon": "📌",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.linear",
+            "name": "Linear",
+            "version": "0.1.0",
+            "description": "Linear issue tracking integration.",
+            "author": "Dooz Team",
+            "downloads": 1500,
+            "icon": "📐",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.slack",
+            "name": "Slack",
+            "version": "0.1.0",
+            "description": "Slack notifications and commands.",
+            "author": "Dooz Team",
+            "downloads": 3400,
+            "icon": "💬",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.notion",
+            "name": "Notion",
+            "version": "0.1.0",
+            "description": "Notion workspace integration.",
+            "author": "Dooz Team",
+            "downloads": 2100,
+            "icon": "📓",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.figma",
+            "name": "Figma",
+            "version": "0.1.0",
+            "description": "Figma design file access.",
+            "author": "Dooz Team",
+            "downloads": 1900,
+            "icon": "🎨",
+            "category": "Integration"
+        },
+        {
+            "id": "com.dooz.sentry",
+            "name": "Sentry",
+            "version": "0.1.0",
+            "description": "Sentry error monitoring.",
+            "author": "Dooz Team",
+            "downloads": 1600,
+            "icon": "🚨",
+            "category": "Integration"
         }
     ]
 }
